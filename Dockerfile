@@ -16,5 +16,9 @@ RUN apt-get update  -qq \
     && apt-get install docker-ce=17.12.1~ce-0~debian -y \
     && curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose \
     && chmod +x /usr/bin/docker-compose
+RUN sudo systemctl stop docker \
+    && sudo service docker stop
+RUN sudo systemctl start docker
+    && sudo service docker start
 RUN usermod -aG docker jenkins \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
