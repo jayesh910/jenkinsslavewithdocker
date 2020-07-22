@@ -18,7 +18,7 @@ RUN apt-get update  -qq \
     && chmod +x /usr/bin/docker-compose
 RUN sudo systemctl stop docker \
     && sudo service docker stop
-RUN sudo systemctl start docker
+RUN sudo systemctl start docker \
     && sudo service docker start
 RUN usermod -aG docker jenkins \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
